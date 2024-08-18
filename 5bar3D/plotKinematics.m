@@ -6,9 +6,9 @@ function plotKinematics(app)
     axis(app.UIAxesKN, 'equal');
     
     % Set the limits and labels of the axes
-    xlim(app.UIAxesKN, [-300 300]);
-    ylim(app.UIAxesKN, [-300 300]);
-    zlim(app.UIAxesKN, [-300 300]);
+    xlim(app.UIAxesKN, [-500 500]);
+    ylim(app.UIAxesKN, [-500 500]);
+    zlim(app.UIAxesKN, [-500 500]);
     xlabel(app.UIAxesKN, 'X (mm)');
     ylabel(app.UIAxesKN, 'Y (mm)');
     zlabel(app.UIAxesKN, 'Z (mm)');
