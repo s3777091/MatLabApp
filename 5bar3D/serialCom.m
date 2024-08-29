@@ -68,12 +68,15 @@ while true
     % Send updated theta values, if not NaN
     if ~isnan(theta1)
         write(s, sprintf('a%.2f\n', theta1), "string");
+        pause(0.02);
     end
     if ~isnan(theta2)
         write(s, sprintf('s%.2f\n', theta2), "string");
+        pause(0.02);
     end
     if ~isnan(theta3)
         write(s, sprintf('d%.2f\n', theta3), "string");
+        pause(0.02);
     end
 
     pause(1); % Pause for 1 second (adjust as needed)
