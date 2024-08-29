@@ -5,31 +5,6 @@ s = serialport('/dev/tty.usbserial-21230', 115200);
 
 configureTerminator(s, "LF"); % Setting the terminator to Line Feed
 
-% Use this code to read data from the serial port
-% Flush the previous data
-flush(s);
-
-% Example theta values (replace these with your calculated values)
-theta1 = 180;
-theta2 = 90;
-theta3 = 45;
-
-% Send theta1 as 'a' followed by the value, if not NaN
-if ~isnan(theta1)
-    write(s, sprintf('a%.2f\n', theta1), "string");
-end
-
-% Send theta2 as 's' followed by the value, if not NaN
-if ~isnan(theta2)
-    write(s, sprintf('s%.2f\n', theta2), "string");
-end
-
-% Send theta3 as 'd' followed by the value, if not NaN
-if ~isnan(theta3)
-    write(s, sprintf('d%.2f\n', theta3), "string");
-end
-
-% Example: Sending these values in a loop for testing
 while true
     flush(s);
     data = readline(s);
@@ -64,20 +39,16 @@ while true
     disp(['Updated theta2: ', num2str(theta2)]);
     disp(['Updated theta3: ', num2str(theta3)]);
 
-
     % Send updated theta values, if not NaN
     if ~isnan(theta1)
         write(s, sprintf('a%.2f\n', theta1), "string");
-        pause(0.02);
     end
     if ~isnan(theta2)
         write(s, sprintf('s%.2f\n', theta2), "string");
-        pause(0.02);
     end
     if ~isnan(theta3)
         write(s, sprintf('d%.2f\n', theta3), "string");
-        pause(0.02);
     end
 
-    pause(1); % Pause for 1 second (adjust as needed)
+    pause(0.02);
 end

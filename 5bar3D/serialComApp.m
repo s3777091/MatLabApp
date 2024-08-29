@@ -3,25 +3,6 @@ function serialComApp(app)
 s = serialport('/dev/tty.usbserial-21230', 115200);
 configureTerminator(s, "LF"); % Setting the terminator to Line Feed
 
-% Flush the previous data
-flush(s);
-
-% Send app.th1deg as 'a' followed by the value, if not NaN
-if ~isnan(app.th1deg)
-    write(s, sprintf('a%.2f\n', app.th1deg), "string");
-end
-
-% Send app.th2deg as 's' followed by the value, if not NaN
-if ~isnan(app.th2deg)
-    write(s, sprintf('s%.2f\n', app.th2deg), "string");
-end
-
-% Send app.th3deg as 'd' followed by the value, if not NaN
-if ~isnan(app.th3deg)
-    write(s, sprintf('d%.2f\n', app.th3deg), "string");
-end
-
-% Example: Sending these values in a loop for testing
 while true
     flush(s);
     data = readline(s);
@@ -59,17 +40,14 @@ while true
     % Send updated theta values, if not NaN
     if ~isnan(app.th1deg)
         write(s, sprintf('a%.2f\n', app.th1deg), "string");
-        pause(0.02);
     end
     if ~isnan(app.th2deg)
         write(s, sprintf('s%.2f\n', app.th2deg), "string");
-        pause(0.02);
     end
     if ~isnan(app.th3deg)
         write(s, sprintf('d%.2f\n', app.th3deg), "string");
-        pause(0.02);
     end
 
-    pause(1); % Pause for 1 second (adjust as needed)
+    pause(0.02);
 end
 end
